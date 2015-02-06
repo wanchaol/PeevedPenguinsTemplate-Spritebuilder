@@ -2,14 +2,15 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>metadata</key>
-	<dict>
-		<key>version</key>
-		<integer>1</integer>
-	</dict>
-	<key>spriteFrameFiles</key>
+	<key>activeLanguages</key>
 	<array>
-		<string>PeevedPenguinsAssets.plist</string>
+		<string>en</string>
 	</array>
+	<key>fileType</key>
+	<string>SpriteBuilderTranslations</string>
+	<key>fileVersion</key>
+	<integer>1</integer>
+	<key>translations</key>
+	<array/>
 </dict>
 </plist>
