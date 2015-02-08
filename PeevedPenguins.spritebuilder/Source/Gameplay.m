@@ -36,10 +36,12 @@
     _pullbackNode.physicsBody.collisionMask = @[];
     
     _mouseJointNode.physicsBody.collisionMask = @[];
+    
+    _physicsNode.collisionDelegate = self;
 }
 
 
--(void) touchBegan:(UITouch *)touch withEvent:(UIEvent *)event
+-(void) touchBegan:(CCTouch *)touch withEvent:(CCTouchEvent *)event
 {
     CGPoint touchLocation = [touch locationInNode:_contentNode];
     
@@ -72,7 +74,7 @@
 }
 
 
-- (void)touchMoved:(UITouch *)touch withEvent:(UIEvent *)event
+- (void)touchMoved:(CCTouch *)touch withEvent:(CCTouchEvent *)event
 {
     // whenever touches move, update the position of the mouseJointNode to the touch position
     CGPoint touchLocation = [touch locationInNode:_contentNode];
@@ -139,4 +141,18 @@
     [[CCDirector sharedDirector] replaceScene: [CCBReader loadAsScene:@"Gameplay"]];
 }
 
+- (void)ccPhysicsCollisionPostSolve:(CCPhysicsCollisionPair *)pair seal:(CCNode *)nodeA wildcard:(CCNode *)nodeB {
+    float energy = [pair totalKineticEnergy];
+    
+    // if energy is large enough, remove the seal
+    if (energy > 5000.f) {
+        [[_physicsNode space] addPostStepBlock:^{
+            [self sealRemoved:nodeA];
+        } key:nodeA];
+    }
+}
+
+- (void)sealRemoved:(CCNode *)seal {
+    [seal removeFromParent];
+}
 @end

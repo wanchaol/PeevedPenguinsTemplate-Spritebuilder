@@ -7,7 +7,8 @@
 //
 
 #import "CCNode.h"
+#import "CCPhysics+ObjectiveChipmunk.h"
 
-@interface Gameplay : CCNode
+@interface Gameplay : CCNode <CCPhysicsCollisionDelegate>
 
 @end
